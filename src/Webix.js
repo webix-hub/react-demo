@@ -3,18 +3,20 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import * as data from './data.js';
+
 import 'webix/webix.js';
 import 'webix/webix.css';
 
-class FilmsView extends Component {
+class WebixView extends Component {
   render() {
     return (
-      <div ref="root" style={{height:"100%"}}></div>
+      <div ref="root"></div>
     );
   }
 
   componentDidMount(){
+    let height = (this.props.height || "-1")*1;
+
     var tree = {
       view:"tree", id:"tree", gravity: 0.25,
       select:true
@@ -25,7 +27,6 @@ class FilmsView extends Component {
       select:true
     };
 
-    debugger; 
     let fm = window.webix.ui({
       cols:[
         tree, 
@@ -33,12 +34,12 @@ class FilmsView extends Component {
         grid
       ],
       isolate:true,
-
+      height,
       container:ReactDOM.findDOMNode(this.refs.root)
     });
 
-    fm.$$("tree").parse(data.tree());
-    fm.$$("grid").parse(data.grid());
+    fm.$$("tree").parse(data.tree);
+    fm.$$("grid").parse(data.grid);
   }
 
   shouldComponentUpdate(){

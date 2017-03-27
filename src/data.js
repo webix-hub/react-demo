@@ -1,4 +1,4 @@
-export const grid = [
+export const grid = () => [
 	{ id:1, title:"The Shawshank Redemption", year:1994, votes:678790, rating:9.2, rank:1},
 	{ id:2, title:"The Godfather", year:1972, votes:511495, rating:9.2, rank:2},
 	{ id:3, title:"The Godfather: Part II", year:1974, votes:319352, rating:9.0, rank:3},
@@ -7,7 +7,7 @@ export const grid = [
 	{ id:6, title:"12 Angry Men", year:1957, votes:164558, rating:8.9, rank:6}
 ];
 
-export const tree = [
+export const tree = () => [
     {id:"root", value:"Films data", open:true, data:[
 		{ id:"1", open:true, value:"The Shawshank Redemption", data:[
 			{ id:"1.1", value:"Part 1" },
