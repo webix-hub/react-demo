@@ -31,7 +31,7 @@ There are 3 main techniques
 
 ### Webix component
 
-```
+```jsx
 	const ui = {
 		view:"slider"
 	};
@@ -42,7 +42,7 @@ There are 3 main techniques
 
 ### Custom components
 
-```
+```jsx
 class FilmsView extends Component {
   render() {
     return (
@@ -74,7 +74,7 @@ class FilmsView extends Component {
 You can use Webix component with Redux without any customizations.   
 For custom components, be sure that custom component returns true from shouldComponentUpdate and provides componentWillUpdate handler, to mutate state of Webix component
 
-```
+```js
   componentWillUpdate(props){
     if (props.data)
       this.setWebixData(props.data);
@@ -82,8 +82,7 @@ For custom components, be sure that custom component returns true from shouldCom
       this.select(props.select);
   },
   shouldComponentUpdate(){
-  	// as component is not linked to the external data, there is no need in updates
-    return false;
+    return true;
   }
 ```
 
