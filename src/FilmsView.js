@@ -3,7 +3,7 @@
 
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import * as data from './data.js';
+import * as data from './data/data.js';
 import 'webix/webix.js';
 import 'webix/webix.css';
 
@@ -16,17 +16,17 @@ class FilmsView extends Component {
 
   componentDidMount(){
     var tree = {
-      view:"tree", id:"tree", gravity: 0.25,
+      view:"tree", id:"tree", gravity: 0.6,
       select:true
     };
 
     var grid = {
       view:"datatable", id:"grid", autoConfig:true,
+      scroll:false,
       select:true
     };
 
-    debugger; 
-    let fm = window.webix.ui({
+    this.ui = window.webix.ui({
       cols:[
         tree, 
         { view:"resizer" },
@@ -37,8 +37,13 @@ class FilmsView extends Component {
       container:ReactDOM.findDOMNode(this.refs.root)
     });
 
-    fm.$$("tree").parse(data.tree());
-    fm.$$("grid").parse(data.grid());
+    this.ui.$$("tree").parse(data.tree());
+    this.ui.$$("grid").parse(data.grid());
+  }
+
+  componentWillUnmount(){
+    this.ui.destructor();
+    this.ui = null;
   }
 
   shouldComponentUpdate(){

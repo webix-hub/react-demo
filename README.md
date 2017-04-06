@@ -22,9 +22,71 @@ Builds the app for production to the `build` folder. Your app is ready to be dep
 Integration with Webix
 ----------------------
 
-For now, demo contains only basic example of custom React component with Webix UI inside. 
+You can use Webix inside of React App, to add some rich widgets to the existing functionality.
 
-There is no any special API calls or extra steps required.
+If you are plan to use Webix for most UI in the app, please check <a href='https://webix.gitbooks.io/webix-jet/content/chapter1.html'>Webix Jet</a> first,
+it is a micro-framework for building Webix based apps.
+
+There are 3 main techniques
+
+### Webix component
+
+```
+	const ui = {
+		view:"slider"
+	};
+	const value = 123;
+
+	<Webix ui={ui} data={value} />
+```
+
+### Custom components
+
+```
+class FilmsView extends Component {
+  render() {
+    return (
+      <div ref="root" style={{height:"100%"}}></div>
+    );
+  }
+
+  componentDidMount(){
+    this.ui = window.webix.ui({
+      view:"slider"
+      container:ReactDOM.findDOMNode(this.refs.root)
+    });
+  }
+
+  componentWillUnmount(){
+    this.ui.destructor();
+    this.ui = null;
+  }
+
+  shouldComponentUpdate(){
+    return false;
+  }
+}
+```
+
+
+### Using with Redux
+
+You can use Webix component with Redux without any customizations.   
+For custom components, be sure that custom component returns true from shouldComponentUpdate and provides componentWillUpdate handler, to mutate state of Webix component
+
+```
+  componentWillUpdate(props){
+    if (props.data)
+      this.setWebixData(props.data);
+    if (props.select)
+      this.select(props.select);
+  },
+  shouldComponentUpdate(){
+  	// as component is not linked to the external data, there is no need in updates
+    return false;
+  }
+```
+
 
 
 License

@@ -7,46 +7,44 @@ import ReactDOM from 'react-dom';
 import 'webix/webix.js';
 import 'webix/webix.css';
 
-class WebixView extends Component {
+class Webix extends Component {
   render() {
     return (
       <div ref="root"></div>
     );
   }
 
+  setWebixData(data){
+    const ui = this.ui;
+    if (ui.setValues)
+      ui.setValues(data);
+    else if (ui.parse)
+      ui.parse(data)
+    else if (ui.setValue)
+      ui.setValue(data); 
+  }
+
+  componentWillUnmount(){
+    this.ui.destructor();
+    this.ui = null;
+  }
+
+  componentWillUpdate(props){
+    if (props.data)
+      this.setWebixData(props.data);
+    if (props.select)
+      this.select(props.select);
+  }
+
   componentDidMount(){
-    let height = (this.props.height || "-1")*1;
+  	this.ui = window.webix.ui(
+  	  this.props.ui, 
+  	  ReactDOM.findDOMNode(this.refs.root)
+	  );
 
-    var tree = {
-      view:"tree", id:"tree", gravity: 0.25,
-      select:true
-    };
-
-    var grid = {
-      view:"datatable", id:"grid", autoConfig:true,
-      select:true
-    };
-
-    let fm = window.webix.ui({
-      cols:[
-        tree, 
-        { view:"resizer" },
-        grid
-      ],
-      isolate:true,
-      height,
-      container:ReactDOM.findDOMNode(this.refs.root)
-    });
-
-    fm.$$("tree").parse(data.tree);
-    fm.$$("grid").parse(data.grid);
+    this.componentWillUpdate(this.props);
   }
-
-  shouldComponentUpdate(){
-  	// as component is not linked to the external data, there is no need in updates
-    return false;
-  }
-
+  
 }
 
-export default FilmsView;
+export default Webix;

@@ -1,3 +1,9 @@
+body{
+  padding: 0;
+  margin: 0;
+  font-family: Tahoma;
+}
+
 .app-logo {
   animation: app-logo-spin infinite 20s linear;
   height: 80px;
@@ -20,11 +26,11 @@
 .content-box{
   display: flex;
   flex-direction: row;
-  height: 400px
 }
 
 .menu{
   flex: 0 0 200px;
+  margin-right:100px;
 }
 .menu ul{
   padding: 10px 20px 0 0; margin:0;
@@ -44,20 +50,24 @@
   background: #89F18B;
 }
 .content{
-  flex: 0 0 900px;
+  flex: 0 0 780px;
+  min-height: 600px;
+  margin:20px;
 }
 .footer{
-  background: #444;
-  color: white;
-  padding: 5px 20px;
-}
-.footer a, .footer a:visited{
-  text-decoration: none;
-  color: white;
+  border-top: 2px solid #444;
+  padding: 2px 2px;
 }
 
 .app{
   width: 1100px;
   margin: auto;
   color: #222;
+}
+
+ul li{
+  line-height: 25px;
+}
+p{
+  line-height: 20px;
 }

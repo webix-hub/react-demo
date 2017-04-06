@@ -3,9 +3,11 @@ import { HashRouter as Router, Route, NavLink} from 'react-router-dom';
 
 import Home from './Home';
 import FilmsView from './FilmsView';
+import FormView from './FormView';
+import ReduxAppView from './redux/ReduxAppView';
 
-import logo from './logo.svg';
-import './App.css';
+import logo from './assets/logo.svg';
+import './assets/App.css';
 
 const App = () => (
   <Router>
@@ -20,17 +22,18 @@ const App = () => (
             <li><NavLink to="/" exact   activeClassName='active'>Home</NavLink></li>
             <li><NavLink to="/webix"    activeClassName='active'>Webix Component</NavLink></li>
             <li><NavLink to="/custom"   activeClassName='active'>Custom Component</NavLink></li>
-            <li><NavLink to="/data"     activeClassName='active'>Sync Data</NavLink></li>
-            <li><NavLink to="/config"   activeClassName='active'>Sync Config</NavLink></li>
+            <li><NavLink to="/data"     activeClassName='active'>Redux + Webix</NavLink></li>
           </ul>
         </div>
         <div className='content'>
           <Route exact path="/" component={Home} />
           <Route path="/custom" component={FilmsView} />
+          <Route path="/webix" component={FormView} />
+          <Route path="/data" component={ReduxAppView} />
         </div>
       </div>
       <div className='footer'>
-        <p><a href='http://webix.com'>http://webix.com</a></p>
+        <p>Get more info at <a target='blank' href='http://webix.com'>http://webix.com</a></p>
       </div>
     </div>
   </Router>
