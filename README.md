@@ -17,7 +17,7 @@ Run `npm install` and `npm start` after that. Open `http://localhost:3000` to vi
 
 The page will be reloading while you are editing form fields.
 
-###Production build
+**Production build**
 
 To build the production version, run `npm run build`.
 
