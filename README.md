@@ -3,50 +3,59 @@ Webix-React demo
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-How to start
-------------
-
-Run `npm install` and `npm start` after that. 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-#### Production build
-
-Run `npm run build`
-
-Builds the app for production to the `build` folder. Your app is ready to be deployed!
-
-
-Integration with Webix
-----------------------
-
 You can use Webix inside of React App, to add some rich widgets to the existing functionality.
 
-If you are plan to use Webix for most UI in the app, please check <a href='https://webix.gitbooks.io/webix-jet/content/chapter1.html'>Webix Jet</a> first,
-it is a micro-framework for building Webix based apps.
+If you plan to use Webix for most UI in the app, please check [Webix Jet](https://webix.gitbooks.io/webix-jet/content/chapter1.html) first. It is a micro-framework for building Webix-based apps. 
 
-There are 3 main techniques
+How to Start
+----------------
 
-### Webix component
+[Grab the demo from Github](https://github.com/webix-hub/react-demo) if you haven't done this yet. 
+Thus you will get an example of integration usage.
 
-```jsx
-	const ui = {
-		view:"slider"
-	};
-	const value = 123;
+Run `npm install` and `npm start` after that. Open `http://localhost:3000` to view the demo in the browser.
 
-	<Webix ui={ui} data={value} />
-```
+The page will be reloading while you are editing form fields.
 
-### Custom components
+###Production build
 
-```jsx
-class FilmsView extends Component {
+To build the production version, run `npm run build`.
+
+It will build the application for production to the *build* folder. After that your app is ready to be deployed.
+
+
+Using Webix Widget in React App
+-------------------------------
+
+You can create a React component with a Webix widget inside like this:
+
+~~~js
+const ui = {
+	view:"slider"
+};
+const value = 123;
+
+const SliderView = () => (
+  <Webix ui={ui} data={value} />
+)
+~~~
+
+The logic is the following:
+
+- use the tag  < Webix > to define a Webix widget
+- specify the necessary view in the *ui* object and define its config
+
+Creating Custom Webix-React Component
+--------------------------------
+
+Instead of using a prebuilt Webix component, there is a possibility to make a custom one.
+For example, the code for a custom Slider component can look as follows: 
+
+~~~js
+class SliderView extends Component {
   render() {
     return (
-      <div ref="root" style={{height:"100%"}}></div>
+      <div ref="root"></div>
     );
   }
 
@@ -66,28 +75,35 @@ class FilmsView extends Component {
     return false;
   }
 }
-```
+~~~
 
+In the above code we have created the SliderView component that contains a Webix slider inside.
 
-### Using with Redux
+The list of the defined methods is:
 
-You can use Webix component with Redux without any customizations.   
-For custom components, be sure that custom component returns true from shouldComponentUpdate and provides componentWillUpdate handler, to mutate state of Webix component
+- the **componentDidMount()** method creates a new component
+- the **componentWillUnmount()** method will destruct the component when it won't be needed anymore
+- the **shouldComponentUpdate()** method is responsible for the component's updates. In this example, updates for the component are disabled
 
-```js
-  componentWillUpdate(props){
+Using Webix Widget with Redux
+-------------------------------
+
+You can use a Webix widget with Redux without any extra customization required.
+
+For custom components make sure that such a component returns *true* from **shouldComponentUpdate()** and provides
+the **componentWillUpdate** handler to mutate the state of the Webix widget.
+
+~~~js
+componentWillUpdate(props){
     if (props.data)
       this.setWebixData(props.data);
     if (props.select)
       this.select(props.select);
-  },
-  shouldComponentUpdate(){
-    return true;
-  }
-```
-
-
-
+},
+shouldComponentUpdate(){
+	return true;
+}
+~~~
 License
 --------
 
