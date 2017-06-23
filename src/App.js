@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, NavLink} from 'react-router-dom';
 import Home from './Home';
 import FilmsView from './FilmsView';
 import FormView from './FormView';
+import ReactAsView from './ReactAsView';
 import ReduxAppView from './redux/ReduxAppView';
 
 import logo from './assets/logo.svg';
@@ -23,6 +24,7 @@ const App = () => (
             <li><NavLink to="/webix"    activeClassName='active'>Webix Component</NavLink></li>
             <li><NavLink to="/custom"   activeClassName='active'>Custom Component</NavLink></li>
             <li><NavLink to="/data"     activeClassName='active'>Redux + Webix</NavLink></li>
+            <li><NavLink to="/view"     activeClassName='active'>React as Webix view</NavLink></li>
           </ul>
         </div>
         <div className='content'>
@@ -30,6 +32,7 @@ const App = () => (
           <Route path="/custom" component={FilmsView} />
           <Route path="/webix" component={FormView} />
           <Route path="/data" component={ReduxAppView} />
+          <Route path="/view" component={ReactAsView} />
         </div>
       </div>
       <div className='footer'>
