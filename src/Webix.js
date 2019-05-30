@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import 'webix/webix.js';
+import * as webix from 'webix/webix.js';
 import 'webix/webix.css';
 
 class Webix extends Component {
@@ -37,7 +37,7 @@ class Webix extends Component {
   }
 
   componentDidMount(){
-  	this.ui = window.webix.ui(
+  	this.ui = webix.ui(
   	  this.props.ui, 
   	  ReactDOM.findDOMNode(this.refs.root)
 	  );

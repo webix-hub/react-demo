@@ -5169,9 +5169,10 @@ webidl-conversions@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.1.tgz#8015a17ab83e7e1b311638486ace81da6ce206a0"
 
-webix@^4.2.0:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/webix/-/webix-4.2.4.tgz#75b44acbc2ec7b2e5acd9a9b752d26a997049def"
+webix@^6.3.0:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/webix/-/webix-6.3.1.tgz#44374cdbb7b439ff5c9938c1f8a565948410b36e"
+  integrity sha512-RvQO8dY4Wy9u2JnlU6sRs6y8xezTlo6wETMDqoobpBMMERjhjYDaYzPUUPnY972bJ4sxAUHZGkeUE7Ju7qLJfQ==
 
 webpack-core@~0.6.9:
   version "0.6.9"

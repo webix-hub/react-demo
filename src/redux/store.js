@@ -1,3 +1,5 @@
+import * as webix from 'webix/webix.js';
+
 var initialData = {
   selected:1,
   data:[
@@ -10,12 +12,12 @@ var initialData = {
 export function userInfo(state = initialData, action) {
   switch (action.type) {
   case 'SET_USER_INFO':
-    var copy1 = window.webix.copy(state);
+    var copy1 = webix.copy(state);
     Object.assign(copy1.data[copy1.selected], action.value);
     return copy1;
 
   case 'SELECT_USER':
-    var copy2 = window.webix.copy(state);
+    var copy2 = webix.copy(state);
     copy2.selected = action.id-1
     return copy2;
 

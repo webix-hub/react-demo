@@ -6,7 +6,9 @@ import ReactDOM from 'react-dom';
 import Webix from './Webix';
 import FormView from './FormView';
 
-window.webix.protoUI({
+import * as webix from 'webix/webix.js';
+
+webix.protoUI({
   name:"react",
   defaults:{
     borderless:true
@@ -19,7 +21,7 @@ window.webix.protoUI({
       );
     });
   }
-}, window.webix.ui.view)
+}, webix.ui.view)
 
 
 function getForm(){
@@ -28,7 +30,7 @@ function getForm(){
   return {
     view:"form", width:500, elements:[
       { view:"text", name:"Company", label:"Name", placeholder:"Type your full name here"},
-      { type:"header", template:"Owner" },
+      { type:"header", template:"Owner", css:"webix_dark" },
       {
         view:"react", height: 220, app:subApp
       },

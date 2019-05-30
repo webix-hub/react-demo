@@ -4,7 +4,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as data from './data/data.js';
-import 'webix/webix.js';
+
+import * as webix from 'webix/webix.js';
 import 'webix/webix.css';
 
 class FilmsView extends Component {
@@ -26,7 +27,7 @@ class FilmsView extends Component {
       select:true
     };
 
-    this.ui = window.webix.ui({
+    this.ui = webix.ui({
       cols:[
         tree, 
         { view:"resizer" },

@@ -60,7 +60,7 @@ class SliderView extends Component {
   }
 
   componentDidMount(){
-    this.ui = window.webix.ui({
+    this.ui = webix.ui({
       view:"slider"
       container:ReactDOM.findDOMNode(this.refs.root)
     });
