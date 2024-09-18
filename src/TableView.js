@@ -1,8 +1,8 @@
 // example of custom component with Webix UI inside
 // this one is a static view, not linked to the React data store
 
-import React from 'react';
-import Webix from './Webix';
+import React from "react";
+import Webix from "./Webix";
 
 
 function getUI(select){
@@ -13,8 +13,8 @@ function getUI(select){
       { id:"age", width: 50 }
     ],
     on:{
-      onAfterSelect:function(id){
-        select(id);
+      onAfterSelect:function(selectedItem){
+        select(selectedItem.id);
       }
     }
   };

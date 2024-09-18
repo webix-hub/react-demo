@@ -1,16 +1,19 @@
 // example of custom component with Webix UI inside
 // this one is a static view, not linked to the React data store
 
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-
-import * as webix from 'webix/webix.js';
-import 'webix/webix.css';
+import React, { Component } from "react";
+import * as webix from "webix/webix.js";
+import "webix/webix.css";
 
 class Webix extends Component {
+  constructor(props) {
+		super(props);
+		this.uiContainer = React.createRef();
+	}
+
   render() {
     return (
-      <div ref="root"></div>
+      <div ref={this.uiContainer}></div>
     );
   }
 
@@ -21,30 +24,34 @@ class Webix extends Component {
     else if (ui.parse)
       ui.parse(data)
     else if (ui.setValue)
-      ui.setValue(data); 
+      ui.setValue(data);
   }
 
   componentWillUnmount(){
-    this.ui.destructor();
-    this.ui = null;
+    if (this.ui) {
+      this.ui.destructor();
+      this.ui = null;
+    }
   }
 
-  componentWillUpdate(props){
-    if (props.data)
-      this.setWebixData(props.data);
-    if (props.select)
-      this.select(props.select);
+  componentDidUpdate(){
+    if (this.props.data)
+      this.setWebixData(this.props.data);
+    if (this.props.select)
+      this.select(this.props.select);
   }
 
   componentDidMount(){
-  	this.ui = webix.ui(
-  	  this.props.ui, 
-  	  ReactDOM.findDOMNode(this.refs.root)
-	  );
-
-    this.componentWillUpdate(this.props);
+    const container = this.uiContainer.current;
+    webix.ready(() => {
+      this.ui = webix.ui(
+        this.props.ui,
+        container,
+      );
+      this.componentDidUpdate();
+    })
   }
-  
+
 }
 
 export default Webix;
