@@ -7,9 +7,9 @@ import "webix/webix.css";
 
 class Webix extends Component {
   constructor(props) {
-		super(props);
-		this.uiContainer = React.createRef();
-	}
+    super(props);
+    this.uiContainer = React.createRef();
+  }
 
   render() {
     return (

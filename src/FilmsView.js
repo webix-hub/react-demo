@@ -9,9 +9,10 @@ import "webix/webix.css";
 
 class FilmsView extends Component {
   constructor(props) {
-		super(props);
-		this.uiContainer = React.createRef();
-	}
+    super(props);
+    this.uiContainer = React.createRef();
+  }
+
   render() {
     return (
       <div ref={this.uiContainer} style={{height:"100%"}}></div>
