@@ -1,8 +1,8 @@
 // example of custom component with Webix UI inside
 // this one is a static view, not linked to the React data store
 
-import React from 'react';
-import Webix from './Webix';
+import React from "react";
+import Webix from "./Webix";
 
 
 function getForm(save){

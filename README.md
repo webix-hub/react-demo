@@ -5,12 +5,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You can use Webix inside of React App, to add some rich widgets to the existing functionality.
 
-If you plan to use Webix for most UI in the app, please check [Webix Jet](https://webix.gitbooks.io/webix-jet/content/chapter1.html) first. It is a micro-framework for building Webix-based apps. 
+If you plan to use Webix for most UI in the app, please check [Webix Jet](https://webix.gitbooks.io/webix-jet/content/chapter1.html) first. It is a micro-framework for building Webix-based apps.
 
 How to Start
 ----------------
 
-[Grab the demo from Github](https://github.com/webix-hub/react-demo) if you haven't done this yet. 
+[Grab the demo from Github](https://github.com/webix-hub/react-demo) if you haven't done this yet.
 Thus you will get an example of integration usage.
 
 Run `npm install` and `npm start` after that. Open `http://localhost:3000` to view the demo in the browser.
@@ -49,21 +49,28 @@ Creating Custom Webix-React Component
 --------------------------------
 
 Instead of using a prebuilt Webix component, there is a possibility to make a custom one.
-For example, the code for a custom Slider component can look as follows: 
+For example, the code for a custom Slider component can look as follows:
 
 ~~~js
 class SliderView extends Component {
+  constructor(props) {
+    super(props);
+    this.uiContainer = React.createRef();
+  }
+
   render() {
     return (
-      <div ref="root"></div>
+      <div ref={this.uiContainer}></div>
     );
   }
 
   componentDidMount(){
-    this.ui = webix.ui({
-      view:"slider"
-      container:ReactDOM.findDOMNode(this.refs.root)
-    });
+    webix.ready(() => {
+      this.ui = webix.ui({
+        view:"slider",
+        container:this.uiContainer.current,
+      });
+    })
   }
 
   componentWillUnmount(){
@@ -91,14 +98,14 @@ Using Webix Widget with Redux
 You can use a Webix widget with Redux without any extra customization required.
 
 For custom components make sure that such a component returns *true* from **shouldComponentUpdate()** and provides
-the **componentWillUpdate** handler to mutate the state of the Webix widget.
+the **componentDidUpdate** handler to mutate the state of the Webix widget.
 
 ~~~js
-componentWillUpdate(props){
-    if (props.data)
-      this.setWebixData(props.data);
-    if (props.select)
-      this.select(props.select);
+componentDidUpdate(){
+    if (this.props.data)
+      this.setWebixData(this.props.data);
+    if (this.props.select)
+      this.select(this.props.select);
 },
 shouldComponentUpdate(){
 	return true;

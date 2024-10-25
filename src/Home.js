@@ -1,7 +1,7 @@
 // example of custom component with Webix UI inside
 // this one is a static view, not linked to the React data store
 
-import React from 'react';
+import React from "react";
 
 export const Home = () => (
   <div>
@@ -15,7 +15,7 @@ export const Home = () => (
 
      <br/><br/><br/>
      <p>The above listed variants will work fine, if you need to add a few Webix widgets to a React-based app.</p>
-     <p>If you are planning to create an app with plenty of Webix widgets, check <a href='https://webix.gitbooks.io/webix-jet/content/chapter1.html'>Webix Jet</a> first. </p>
+     <p>If you are planning to create an app with plenty of Webix widgets, check <a href="https://webix.gitbook.io/webix-jet">Webix Jet</a> first. </p>
   </div>
 );
 
