@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You can use Webix inside of React App, to add some rich widgets to the existing functionality.
 
-If you plan to use Webix for most UI in the app, please check [Webix Jet](https://webix.gitbooks.io/webix-jet/content/chapter1.html) first. It is a micro-framework for building Webix-based apps.
+If you plan to use Webix for most UI in the app, please check [Webix Jet](https://webix.gitbook.io/webix-jet) first. It is a micro-framework for building Webix-based apps.
 
 How to Start
 ----------------
